@@ -62,27 +62,6 @@ where LENGTH(property_address)= 0
 Update nashville_housing_data 
 Set property_address = 'No address'
 where LENGTH(property_address) = 0 
-/*
-	--make a little bit of research 
-select *
-from nashville_housing_data nhd 
-order by parcel_id  
-
-select table1.parcel_id, table1.property_address, table2.parcel_id, table2.property_address, coalesce(table1.property_address, table2.property_address)
-from nashville_housing_data table1
-join nashville_housing_data table2
-	on table1.parcel_id=table2.parcel_id 
-	and table1."UniqueID " != table2."UniqueID "
-where table1.property_address is NULL
- 
-update table1
-set property_address = coalesce(table1.property_address, table2.property_address)
-from nashville_housing_data table1
-join nashville_housing_data table2
-	on table1.parcel_id=table2.parcel_id 
-	and table1."UniqueID " != table2."UniqueID "
-where table1.property_address is null
-*/
 
 --Breaking out Address into individual Columns(Address, City, State)
 
