@@ -1,7 +1,7 @@
 /*
 World's Best-Selling Phone's Sales Data Exploration
 
-Skills used: 
+Skills used: Skills used: DDL, DML, WINDOW FUNCTIONS, STRING FUNCTIONS, GROUP BY
 */
 --view of our dataset
 select *
@@ -86,12 +86,12 @@ order by rank;
 select manufacturer, SUM(bsp.unit_sold_millons) as sum
 from best_selling_phones bsp 
 group by manufacturer 
-order by sum desc
+order by sum desc;
 --Which companies made the best-selling phones based on each form-factor?
 select manufacturer, form_factor, SUM(unit_sold_millons),
 		RANK() OVER(PARTITION by form_factor order by SUM(unit_sold_millons) DESC)
 from best_selling_phones bsp2 
-group by manufacturer, form_factor
+group by manufacturer, form_factor;
 --Top-1 companies which made the best-selling phones based on each form-factor?
 select manufacturer, form_factor, sum
 FROM
@@ -99,7 +99,7 @@ FROM
 		RANK() OVER(PARTITION by form_factor order by SUM(unit_sold_millons) DESC) rnk
 from best_selling_phones bsp2 
 group by manufacturer, form_factor)
-where rnk <=1
+where rnk <=1;
 --The most popular phone based on the year of release
 SELECT year, manufacturer,model, form_factor, unit_sold_millons 
 FROM best_selling_phones bsp
@@ -112,12 +112,12 @@ order by year;
 select manufacturer, model, bsp.unit_sold_millons 
 from best_selling_phones bsp 
 where smartphone = TRUE
-order by unit_sold_millons desc
+order by unit_sold_millons desc;
 --The most popular not smartphones of all time
 select manufacturer, model, bsp.unit_sold_millons 
 from best_selling_phones bsp 
 where smartphone = FALSE
-order by unit_sold_millons desc
+order by unit_sold_millons desc;
 --The most_popular phones of each company
 select manufacturer, model, sum, rnk
 FROM
