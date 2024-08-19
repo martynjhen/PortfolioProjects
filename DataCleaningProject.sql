@@ -1,3 +1,6 @@
+/*
+Nashville Housing Data Data Cleaning
+*/
 select *
 from nashville_housing_data_for_data_cleaning nhdfdc 
 --Set normal columns names
